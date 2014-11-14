@@ -69,10 +69,14 @@ body {
   color: #505050;
 }
 
-.introduction, .sign-up { text-align: center; }
+.introduction { position: relative; background-color: #000; height: 680px; overflow: hidden; }
+.introduction .video-container { width: 1280px; margin-left: auto; margin-right: auto; }
+.introduction .video-overlay { text-align: center; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.introduction .logo-and-tagline h2 { margin-top: 460px; margin-bottom: 30px; font-size: 24px; }
 
 .contact { background: #fff; overflow: hidden; padding: 35px; }
-address > div { margin-top: 9px; }
-address h4 { font-weight: 700; color: #F35D72; }
-address:first-of-type { float: left; margin-left: 5px; margin-right: 90px;
+.contact address { display: inline-block; min-width: 100px; margin-bottom: 30px; }
+.contact address > div { margin-top: 9px; }
+.contact address h4 { font-weight: 700; color: #F35D72; }
+.contact address:first-of-type { float: left; margin-left: 5px; margin-right: 90px;
 }

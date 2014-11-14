@@ -71,8 +71,10 @@ body {
 
 .introduction { position: relative; background-color: #000; height: 680px; overflow: hidden; }
 .introduction .video-container { width: 1280px; margin-left: auto; margin-right: auto; }
-.introduction .video-overlay { text-align: center; color: #fff; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
-.introduction .logo-and-tagline h2 { margin-top: 460px; margin-bottom: 30px; font-size: 24px; }
+.introduction .video-overlay { text-align: center; color: #FFF; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+.logo-and-tagline .logo { margin-top: 80px; margin-bottom: 85px; }
+.logo-and-tagline h2 { margin-bottom: 30px; font-size: 33px; }
 
 .contact { background: #fff; overflow: hidden; padding: 35px; }
 .contact address { display: inline-block; min-width: 100px; margin-bottom: 30px; }

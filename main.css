@@ -57,7 +57,8 @@ table {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-body {
+body {  min-width: 320px; color: #505050; }
+body, button {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -65,8 +66,6 @@ body {
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.05em;
-  min-width: 320px;
-  color: #505050;
 }
 
 .introduction { position: relative; background-color: #000; height: 680px; overflow: hidden; }
@@ -76,9 +75,12 @@ body {
 .logo-and-tagline .logo { margin-top: 80px; margin-bottom: 85px; }
 .logo-and-tagline h2 { margin-bottom: 30px; font-size: 33px; }
 
-.contact { background: #fff; overflow: hidden; padding: 35px; }
+.sign-up { margin-top: 75px; }
+.sign-up button { position: relative; border: 0; color: #FFF; background-color: #F35D72; padding: 15px 75px; cursor: pointer; line-height: 20px; }
+.sign-up button span { position: absolute; right: 20px; font-size: 28px; line-height: 18px; }
+
+.contact { background: #FFF; overflow: hidden; padding: 35px; }
 .contact address { display: inline-block; min-width: 100px; margin-bottom: 30px; }
 .contact address > div { margin-top: 9px; }
 .contact address h4 { font-weight: 700; color: #F35D72; }
-.contact address:first-of-type { float: left; margin-left: 5px; margin-right: 90px;
-}
+.contact address:first-of-type { float: left; margin-left: 5px; margin-right: 90px; }

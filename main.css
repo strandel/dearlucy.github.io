@@ -7,6 +7,7 @@
                                                __/ |
                                               |___/   */
 
+
 /* Reset: http://meyerweb.com/eric/tools/css/reset/ */
 
 html, body, div, span, applet, object, iframe,
@@ -58,7 +59,7 @@ table {
   box-sizing: border-box;
 }
 body {  min-width: 320px; color: #505050; }
-body, button {
+body, button, input {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -67,19 +68,35 @@ body, button {
   font-weight: 400;
   letter-spacing: 0.05em;
 }
+button { border: 0; color: #FFF; background-color: #F35D72; padding: 15px 55px; cursor: pointer; line-height: 20px; }
+input { border: 0; background-color: #FFF; line-height: 20px; padding: 15px; box-shadow: 0px 0px 9px -2px #CCC; }
+h2 { font-size: 33px; }
 
 .introduction { position: relative; background-color: #000; height: 680px; overflow: hidden; }
 .introduction .video-container { width: 1280px; margin-left: auto; margin-right: auto; }
-.introduction .video-overlay { text-align: center; color: #FFF; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.introduction .video-overlay { text-align: center; color: #FFF; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 3; }
 
 .logo-and-tagline .logo { margin-top: 80px; margin-bottom: 85px; }
-.logo-and-tagline h2 { margin-bottom: 30px; font-size: 33px; }
+.logo-and-tagline h2 { margin-bottom: 30px; }
 
 .sign-up { margin-top: 75px; }
-.sign-up button { position: relative; border: 0; color: #FFF; background-color: #F35D72; padding: 15px 75px; cursor: pointer; line-height: 20px; }
+.sign-up button { position: relative; padding: 15px 75px; }
 .sign-up button span { position: absolute; right: 20px; font-size: 28px; line-height: 18px; }
 
-.contact { background: #FFF; overflow: hidden; padding: 35px; }
+.sign-up-form { background-color: #EEF0F0; max-height: 0; overflow: hidden; }
+.sign-up-form form { max-width: 600px; margin: 0 auto; opacity: 0; }
+.sign-up-form h2 { color: #F35D72; padding-top: 40px; }
+.sign-up-form p { margin: 15px 0 10px; line-height: 20px; }
+.sign-up-form p + p { margin: 10px 0 30px; }
+.sign-up-form label { display: inline-block; color: #644994; width: 260px; margin: 10px 0; margin-right: 35px; }
+.sign-up-form input[type=text] { width: 100%; margin: 10px 0; }
+.sign-up-form label.confirm { position: relative; display: inline-block; width: 5000px; cursor: pointer; }
+.sign-up-form label.confirm input { position: relative; left: -1000px; }
+.sign-up-form label.confirm input:before { content: ''; position: absolute; width: 20px; height: 20px; background-color: #FFF; }
+.sign-up-form label.confirm input:checked:before { content: 'X'; color: #F35D72; }
+.sign-up-form button { margin: 10px 0 80px; }
+
+.contact { position: relative; z-index: 5; background: #F4F7F9; overflow: hidden; padding: 35px; box-shadow: 0px 0px 9px 0px #CCC; }
 .contact address { display: inline-block; min-width: 100px; margin-bottom: 30px; }
 .contact address > div { margin-top: 9px; }
 .contact address h4 { font-weight: 700; color: #F35D72; }

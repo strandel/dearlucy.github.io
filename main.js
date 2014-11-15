@@ -9,6 +9,13 @@
 
 $(document).ready(function() {
 
+  $('#sign-up-button').click(function () {
+    $('.sign-up-form').animate({ 'max-height': 1000 }, 200, function () {
+      $('.sign-up-form form').animate({ 'opacity': 1 }, 200)
+    })
+  })
+
+
   function adjustVideoSize() {
     var maxVideoWidth = 1440
     var aspectRatio = 16 / 9

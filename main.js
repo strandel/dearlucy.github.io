@@ -9,12 +9,45 @@
 
 $(document).ready(function() {
 
+  var MAIL_ADDRESS_TO_SEND_TO = 'toni.strandell@gmail.com'
+
   $('#sign-up-button').click(function () {
-    $('.sign-up-form').animate({ 'max-height': 1000 }, 200, function () {
-      $('.sign-up-form form').animate({ 'opacity': 1 }, 200)
-    })
+    $('.sign-up-form').animate({ 'max-height': 1000 }, 300)
+    // TODO: scroll to form
+    // TODO: send GA event of opening sign up
+    setTimeout(function () { $('.sign-up-form form').animate({ 'opacity': 1 }, 200) }, 150)
   })
 
+  $('.sign-up-form button.send').click(function (event) {
+    event.preventDefault()
+    // TODO: send to GA as well
+    // TODO: check all fields are filled and checkbox is checked
+    $.ajax({
+      type: "POST",
+      url: "https://mandrillapp.com/api/1.0/messages/send.json",
+      data: {
+        'key': '4dgJP2EFJK04xMZX7A_fqg',
+        'message': {
+          'from_email': 'dearlucy.dev@gmail.com',
+          'to': [
+            {
+              'email': MAIL_ADDRESS_TO_SEND_TO,
+              'name': 'Test',
+              'type': 'to'
+            }
+          ],
+          'autotext': 'true',
+          'subject': 'Sign up details from webpage',
+          'html': 'YOUR EMAIL CONTENT HERE! YOU CAN <b>USE</b> HTML!'
+        }
+      }
+    })
+      // TODO: send success and fail codes to GA
+      .done(function () { console.log('SUCCESS!!') })
+      .fail(function () { console.error('Mail sending failed..') })
+  })
+
+  // TODO: delighter mail titles random
 
   function adjustVideoSize() {
     var maxVideoWidth = 1440

@@ -83,20 +83,19 @@ h2 { font-size: 33px; }
 .sign-up button { position: relative; padding: 15px 75px; }
 .sign-up button span { position: absolute; right: 20px; font-size: 28px; line-height: 18px; }
 
-.sign-up-form { background-color: #EEF0F0; max-height: 0; overflow: hidden; }
-.sign-up-form form { max-width: 600px; margin: 0 auto; opacity: 0; }
-.sign-up-form h2 { color: #F35D72; padding-top: 40px; }
-.sign-up-form p { margin: 15px 0 10px; line-height: 20px; }
-.sign-up-form p + p { margin: 10px 0 30px; }
-.sign-up-form label { display: inline-block; color: #644994; width: 260px; margin: 10px 0; margin-right: 35px; }
+.sign-up-form-section { background-color: #EEF0F0; max-height: 0; overflow: hidden; }
+.sign-up-form { max-width: 590px; margin: 0 auto; opacity: 0; }
+.sign-up-form h2 { color: #F35D72; margin: 40px 16px 0; }
+.sign-up-form p { margin: 15px 16px 10px; line-height: 20px; }
+.sign-up-form p + p { margin: 10px 16px 30px; }
+.sign-up-form label { display: inline-block; color: #644994; width: 260px; margin: 10px 16px; }
 .sign-up-form input[type=text] { width: 100%; margin: 10px 0; }
-.sign-up-form label.confirm { position: relative; display: inline-block; width: 5000px; cursor: pointer; }
-.sign-up-form label.confirm input { position: relative; left: -1000px; }
-.sign-up-form label.confirm input:before { content: ''; position: absolute; width: 20px; height: 20px; background-color: #FFF; }
+.sign-up-form label.confirm { position: relative; display: inline-block; width: 500px; cursor: pointer; }
+.sign-up-form label.confirm input:before { content: ''; position: absolute; top: -1px; left: 0; cursor: pointer; width: 20px; height: 20px; background-color: #FFF; }
 .sign-up-form label.confirm input:checked:before { content: 'X'; color: #F35D72; }
-.sign-up-form button { margin: 10px 0 80px; }
+.sign-up-form button { margin: 10px 16px 80px; }
 
-.contact { position: relative; z-index: 5; background: #F4F7F9; overflow: hidden; padding: 35px; box-shadow: 0px 0px 9px 0px #CCC; }
+.contact { position: relative; z-index: 5; background: #F4F7F9; overflow: hidden; padding: 35px; box-shadow: 0px 0px 9px 0px #555; }
 .contact address { display: inline-block; min-width: 100px; margin-bottom: 30px; }
 .contact address > div { margin-top: 9px; }
 .contact address h4 { font-weight: 700; color: #F35D72; }

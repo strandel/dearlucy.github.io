@@ -12,37 +12,33 @@ $(document).ready(function() {
   var MAIL_ADDRESS_TO_SEND_TO = 'toni.strandell@gmail.com'
 
   $('#sign-up-button').click(function () {
-    $('.sign-up-form').animate({ 'max-height': 1000 }, 300)
-    // TODO: scroll to form
+    $('.sign-up-form-section').animate({ 'max-height': 1000 }, 300)
+    setTimeout(function () { $('.sign-up-form').animate({ 'opacity': 1 }, 200) }, 150)
+    // TODO: scroll to form and focus first
     // TODO: send GA event of opening sign up
-    setTimeout(function () { $('.sign-up-form form').animate({ 'opacity': 1 }, 200) }, 150)
   })
 
   $('.sign-up-form button.send').click(function (event) {
     event.preventDefault()
     // TODO: send to GA as well
     // TODO: check all fields are filled and checkbox is checked
-    $.ajax({
+    var signUpData = $('.sign-up-form').serializeArray().map(function (field) { return field.name + ': ' + field.value }).join('\n')
+    var mandrillSendMailObj = {
       type: "POST",
       url: "https://mandrillapp.com/api/1.0/messages/send.json",
       data: {
         'key': '4dgJP2EFJK04xMZX7A_fqg',
         'message': {
           'from_email': 'dearlucy.dev@gmail.com',
-          'to': [
-            {
-              'email': MAIL_ADDRESS_TO_SEND_TO,
-              'name': 'Test',
-              'type': 'to'
-            }
-          ],
+          'to': [{ 'email': MAIL_ADDRESS_TO_SEND_TO, 'name': 'Test', 'type': 'to' }],
           'autotext': 'true',
           'subject': 'Sign up details from webpage',
-          'html': 'YOUR EMAIL CONTENT HERE! YOU CAN <b>USE</b> HTML!'
+          'html': signUpData
         }
       }
-    })
-      // TODO: send success and fail codes to GA
+    }
+    // TODO: send success and fail codes to GA
+    $.ajax(mandrillSendMailObj)
       .done(function () { console.log('SUCCESS!!') })
       .fail(function () { console.error('Mail sending failed..') })
   })

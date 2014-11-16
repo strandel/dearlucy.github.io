@@ -22,7 +22,7 @@ $(document).ready(function() {
     event.preventDefault()
     // TODO: send to GA as well
     // TODO: check all fields are filled and checkbox is checked
-    var signUpData = $('.sign-up-form').serializeArray().map(function (field) { return field.name + ': ' + field.value }).join('\n')
+    var signUpData = $('.sign-up-form').serializeArray().map(function (field) { return field.name + ': ' + field.value }).join('<br/>')
     var mandrillSendMailObj = {
       type: "POST",
       url: "https://mandrillapp.com/api/1.0/messages/send.json",
@@ -32,7 +32,7 @@ $(document).ready(function() {
           'from_email': 'dearlucy.dev@gmail.com',
           'to': [{ 'email': MAIL_ADDRESS_TO_SEND_TO, 'name': 'Test', 'type': 'to' }],
           'autotext': 'true',
-          'subject': 'Sign up details from webpage',
+          'subject': 'Dearlucy.co: New sign up from webpage',
           'html': signUpData
         }
       }

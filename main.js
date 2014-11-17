@@ -25,10 +25,9 @@ $(document).ready(function() {
     } else {
       // TODO: send to GA as well
       // TODO: send success and fail codes to GA
-      var signUpData = _.map(formFieldsArray, function (field) { return field.name + ': ' + field.value }).join('<br/>')
-      $.ajax(mandrillSendMailObj(signUpData))
-        .done(function () { console.log('SUCCESS!!') })
-        .fail(function () { console.error('Mail sending failed..') })
+      $.ajax(mandrillSendMailObj(toMessageFormat(formFieldsArray)))
+        .done(signUpSuccess)
+        .fail(sendingMailFailed)
     }
   })
 
@@ -36,6 +35,12 @@ $(document).ready(function() {
   function inputElemToNameValueObj(input) { return { name: $(input).attr('name'), value: inputValue(input) }}
   function inputValue(input) { return $(input).attr('type') == 'checkbox' ? $(input).prop('checked') : $(input).val() }
 
+  function signUpSuccess() {
+    $('.sign-up-form .send').css({'visibility': 'hidden'})
+    $('.sign-up-form .joined-msg').fadeIn(300)
+  }
+  function sendingMailFailed() { console.error('Mail sending failed..') }
+  function toMessageFormat(nameValueObjArray) { return _.map(nameValueObjArray, function (field) { return field.name + ': ' + field.value }).join('<br/>')}
   function mandrillSendMailObj(htmlMsg) {
     return {
       type: "POST",

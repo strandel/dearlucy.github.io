@@ -8,7 +8,7 @@
                                               |___/   */
 
 $(document).ready(function() {
-  var MAIL_ADDRESS_TO_SEND_TO = 'toni.strandell@gmail.com'
+  var MAIL_ADDRESS_TO_SEND_TO = 'dearlucy.devSe@gmail.com'
 
   $('.sign-up-form').on('focus', 'input', function (event) { $(event.target).removeClass('missing') })
   $('.sign-up-form').on('blur', 'input', function (event) { if (!inputValue(event.target)) $(event.target).addClass('missing') })

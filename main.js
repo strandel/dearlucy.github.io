@@ -8,22 +8,36 @@
                                               |___/   */
 
 $(document).ready(function() {
-
   var MAIL_ADDRESS_TO_SEND_TO = 'toni.strandell@gmail.com'
 
-  $('#sign-up-button').click(function () {
-    $('.sign-up-form-section').animate({ 'max-height': 1000 }, 300)
-    setTimeout(function () { $('.sign-up-form').animate({ 'opacity': 1 }, 200) }, 150)
-    // TODO: scroll to form and focus first
-    // TODO: send GA event of opening sign up
+  $('.sign-up-form').on('focus', 'input', function (event) { $(event.target).removeClass('missing') })
+  $('.sign-up-form').on('blur', 'input', function (event) { if (!inputValue(event.target)) $(event.target).addClass('missing') })
+  $('.sign-up-form').submit(function (event) {
+    event.preventDefault()
+    var formFieldsArray = formInputsAsNameValueArray($('.sign-up-form'))
+    var missingFieldNames = _.chain(formFieldsArray).filter(function (field) {return !field.value}).pluck('name').value()
+
+    if (missingFieldNames.length) {
+      $('.sign-up-form input').removeClass('missing')
+      _.chain(missingFieldNames)
+        .map(function (name) { return $('input[name=' + name + ']') })
+        .each(function ($input) { $input.addClass('missing') })
+    } else {
+      // TODO: send to GA as well
+      // TODO: send success and fail codes to GA
+      var signUpData = _.map(formFieldsArray, function (field) { return field.name + ': ' + field.value }).join('<br/>')
+      $.ajax(mandrillSendMailObj(signUpData))
+        .done(function () { console.log('SUCCESS!!') })
+        .fail(function () { console.error('Mail sending failed..') })
+    }
   })
 
-  $('.sign-up-form button.send').click(function (event) {
-    event.preventDefault()
-    // TODO: send to GA as well
-    // TODO: check all fields are filled and checkbox is checked
-    var signUpData = $('.sign-up-form').serializeArray().map(function (field) { return field.name + ': ' + field.value }).join('<br/>')
-    var mandrillSendMailObj = {
+  function formInputsAsNameValueArray($form) { return _.map($form.find('input').toArray(), inputElemToNameValueObj) }
+  function inputElemToNameValueObj(input) { return { name: $(input).attr('name'), value: inputValue(input) }}
+  function inputValue(input) { return $(input).attr('type') == 'checkbox' ? $(input).prop('checked') : $(input).val() }
+
+  function mandrillSendMailObj(htmlMsg) {
+    return {
       type: "POST",
       url: "https://mandrillapp.com/api/1.0/messages/send.json",
       data: {
@@ -33,17 +47,11 @@ $(document).ready(function() {
           'to': [{ 'email': MAIL_ADDRESS_TO_SEND_TO, 'name': 'Test', 'type': 'to' }],
           'autotext': 'true',
           'subject': 'Dearlucy.co: New sign up from webpage',
-          'html': signUpData
+          'html': htmlMsg
         }
       }
     }
-    // TODO: send success and fail codes to GA
-    $.ajax(mandrillSendMailObj)
-      .done(function () { console.log('SUCCESS!!') })
-      .fail(function () { console.error('Mail sending failed..') })
-  })
-
-  // TODO: delighter mail titles random
+  }
 
   function adjustVideoSize() {
     var maxVideoWidth = 1440

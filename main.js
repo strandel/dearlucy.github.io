@@ -8,7 +8,7 @@
                                               |___/   */
 
 $(document).ready(function() {
-  var MAIL_ADDRESS_TO_SEND_TO = 'dearlucy.devSe@gmail.com'
+  var MAIL_ADDRESS_TO_SEND_TO = 'dearlucy.dev@gmail.com'
 
   $('.sign-up-form').on('focus', 'input', function (event) { $(event.target).removeClass('missing') })
   $('.sign-up-form').on('blur', 'input', function (event) { if (!inputValue(event.target)) $(event.target).addClass('missing') })
@@ -23,9 +23,9 @@ $(document).ready(function() {
         .map(function (name) { return $('input[name=' + name + ']') })
         .each(function ($input) { $input.addClass('missing') })
     } else {
-      // TODO: send to GA as well
-      // TODO: send success and fail codes to GA
-      $.ajax(mandrillSendMailObj(toMessageFormat(formFieldsArray)))
+      var msg = toMessageFormat(formFieldsArray)
+      ga('send', 'event', 'Sign up', 'contact info sent', msg)
+      $.ajax(mandrillSendMailObj(msg))
         .done(signUpSuccess)
         .fail(sendingMailFailed)
     }
@@ -43,8 +43,8 @@ $(document).ready(function() {
   function toMessageFormat(nameValueObjArray) { return _.map(nameValueObjArray, function (field) { return field.name + ': ' + field.value }).join('<br/>')}
   function mandrillSendMailObj(htmlMsg) {
     return {
-      type: "POST",
-      url: "https://mandrillapp.com/api/1.0/messages/send.json",
+      type: 'POST',
+      url: 'https://mandrillapp.com/api/1.0/messages/send.json',
       data: {
         'key': '4dgJP2EFJK04xMZX7A_fqg',
         'message': {

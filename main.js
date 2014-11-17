@@ -59,10 +59,10 @@ $(document).ready(function() {
   }
 
   function adjustVideoSize() {
-    var maxVideoWidth = 1440
+    var minVideoWidth = 640
     var aspectRatio = 16 / 9
     var windowWidth = $(window).width()
-    var videoWidth = Math.min(maxVideoWidth, windowWidth)
+    var videoWidth = Math.max(minVideoWidth, windowWidth)
     var videoHeight = videoWidth / aspectRatio
 
     $('.introduction').css('height', videoHeight)

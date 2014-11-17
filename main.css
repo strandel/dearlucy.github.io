@@ -76,6 +76,7 @@ p { margin: 20px 0 0; line-height: 20px; }
 
 input { border: 0; background-color: #FFF; line-height: 20px; padding: 15px; box-shadow: 0px 0px 9px -2px #CCC; }
 input.missing { box-shadow: 0 0 9px -2px #F00; }
+input.missing:checked { box-shadow: 0 0 9px -2px #CCC; }
 .no-video-autoplay input { -webkit-appearance: none; }
 .no-video-autoplay input:checked { position: relative; }
 .no-video-autoplay input:checked:after { content: '✔'; position: absolute; top: 5px; left: 7px; font-size: 22px; }
